@@ -21,7 +21,6 @@ partial class Level : GameObjectList
                 GameEnvironment.Screen.Y - mountain.Height);
             backgrounds.Add(mountain);
         }
-
         Clouds clouds = new Clouds(2);
         backgrounds.Add(clouds);
         Add(backgrounds);

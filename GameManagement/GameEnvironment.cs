@@ -11,6 +11,7 @@ public class GameEnvironment : Game
     protected Matrix spriteScale;
     protected Point windowSize;
 
+    protected static Camera Camera;
     protected static Point screen;
     protected static GameStateManager gameStateManager;
     protected static Random random;
@@ -20,13 +21,19 @@ public class GameEnvironment : Game
     public GameEnvironment()
     {
         graphics = new GraphicsDeviceManager(this);
-
+        Camera = new Camera();
         inputHelper = new InputHelper();
         gameStateManager = new GameStateManager();
         spriteScale = Matrix.CreateScale(1, 1, 1);
         random = new Random();
         assetManager = new AssetManager(Content);
         gameSettingsManager = new GameSettingsManager();
+    }
+
+    public static Camera camera {
+        get {
+            return Camera;
+        }
     }
 
     public static Point Screen

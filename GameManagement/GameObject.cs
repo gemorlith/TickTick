@@ -62,6 +62,11 @@ public abstract class GameObject : IGameLoopObject
             }
         }
     }
+    public virtual Vector2 CameraPosition {
+        get{
+            return GlobalPosition - GameEnvironment.camera.CameraPosition;
+        }
+    }
 
     public GameObject Root
     {
