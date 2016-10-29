@@ -1,14 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 
 public class Camera {
-    protected Rectangle cameraPosition;
+
     protected SpriteGameObject followObject;
     public int levelwidth;
+    protected Vector2 cameraPosition;
     public int levelheight;
     public Camera() {
-        cameraPosition = new Rectangle(0, 0, GameEnvironment.Screen.X, GameEnvironment.Screen.Y);
-        levelwidth = GameEnvironment.Screen.X;
-        levelheight = GameEnvironment.Screen.Y;
+        cameraPosition = new Vector2(0,0);
     }
     
     public void setlevelsize(int width, int height) {
@@ -26,8 +25,7 @@ public class Camera {
         }
         set {
             followObject = null;
-            cameraPosition.X = (int)value.X;
-            cameraPosition.Y = (int)value.Y;
+            cameraPosition = value;
         }
     }
     public void Reset() {
@@ -36,13 +34,13 @@ public class Camera {
 
     public void Update(GameTime gameTime) {
         if (followObject != null) {
-            if ((followObject.Position.X < /*levelwidth -*/ 0.5 * GameEnvironment.Screen.X - followObject.Width / 2) &&
-                followObject.Position.X > 0.5 * GameEnvironment.Screen.X - followObject.Width / 2) {
-                cameraPosition.X = (int)followObject.Position.X;
+            if ((followObject.GlobalPosition.X < levelwidth - 0.5 * GameEnvironment.Screen.X - followObject.Width * 0.5) &&
+                followObject.GlobalPosition.X > 0.5 * GameEnvironment.Screen.X - followObject.Width * 0.5) {
+                cameraPosition.X = (int)followObject.GlobalPosition.X - (GameEnvironment.Screen.X * 0.5f - followObject.Width * 0.5f);
             }
-            if ((followObject.Position.Y < /*levelheight -*/ 0.5 * GameEnvironment.Screen.Y - followObject.Height / 2) &&
-                followObject.Position.Y > 0.5 * GameEnvironment.Screen.Y - followObject.Height / 2) {
-                cameraPosition.X = (int)followObject.Position.Y;
+            if ((followObject.GlobalPosition.Y < levelheight - 0.5 * GameEnvironment.Screen.Y - followObject.Height * 0.5) &&
+                followObject.GlobalPosition.Y > 0.5 * GameEnvironment.Screen.Y - followObject.Height * 0.5) {
+                cameraPosition.Y = (int)followObject.GlobalPosition.Y - (GameEnvironment.Screen.Y* 0.5f - followObject.Height * 0.5f);
             }
         }
     }

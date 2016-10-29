@@ -36,6 +36,9 @@ class PlayingState : IGameLoopObject
             }
         }
     }
+    public void setFocus() {
+        CurrentLevel.setFocus();
+    }
 
     public List<Level> Levels
     {

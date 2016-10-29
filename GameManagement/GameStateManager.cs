@@ -28,7 +28,23 @@ public class GameStateManager : IGameLoopObject
         if (gameStates.ContainsKey(name))
         {
             currentGameState = gameStates[name];
-            GameEnvironment.camera.Reset();
+            
+            if(name == "playingState") {
+                GameEnvironment.camera.Reset();
+                PlayingState PS = currentGameState as PlayingState;
+                PS.setFocus();
+            }
+            else if (name == "gameOverState") {
+                GameOverState PS = currentGameState as GameOverState;
+                PS.setFocus();
+            }
+            else if (name == "levelFinishedState") {
+                LevelFinishedState PS = currentGameState as LevelFinishedState;
+                PS.setFocus();
+            }
+            else {
+                GameEnvironment.camera.Reset();
+            }
         }
         else
         {

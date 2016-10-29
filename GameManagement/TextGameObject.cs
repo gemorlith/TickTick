@@ -28,6 +28,12 @@ public class TextGameObject : GameObject
         set { color = value; }
     }
 
+    public override Vector2 CameraPosition {
+        get {
+            return GlobalPosition;
+        }
+    }
+
     public string Text
     {
         get { return text; }
