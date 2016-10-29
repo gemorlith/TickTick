@@ -104,5 +104,9 @@ public class SpriteGameObject : GameObject
         }
         return false;
     }
+    public bool CollidesWithTop(SpriteGameObject obj) {
+        Rectangle topBoundingBox = new Rectangle(BoundingBox.Left, BoundingBox.Top, Width, 1);
+        return topBoundingBox.Intersects(obj.BoundingBox);
+    }
 }
 

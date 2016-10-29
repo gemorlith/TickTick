@@ -19,6 +19,7 @@ public class AssetManager
             return null;
         }
         return contentManager.Load<Texture2D>(assetName);
+
     }
 
     public void PlaySound(string assetName)

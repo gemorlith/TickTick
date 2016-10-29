@@ -1,36 +1,29 @@
 ﻿using Microsoft.Xna.Framework;
 
-partial class Level : GameObjectList
-{
+partial class Level : GameObjectList {
     protected bool locked, solved;
     protected Button quitButton;
     int width;
     int height;
+    TimerGameObject timer;
 
-    public Level(int levelIndex)
-    {
+    public Level(int levelIndex) {
         // load the backgrounds
         GameObjectList backgrounds = new GameObjectList(0, "backgrounds");
-        SpriteGameObject backgroundSky = new SpriteGameObject("Backgrounds/spr_sky");
+        SpriteGameObject backgroundSky = new LockedSpriteGameObject("Backgrounds/spr_sky");
         backgroundSky.Position = new Vector2(0, GameEnvironment.Screen.Y - backgroundSky.Height);
         backgrounds.Add(backgroundSky);
 
         // add a few random mountains
-        for (int i = 0; i < 5; i++)
-        {
-            SpriteGameObject mountain = new SpriteGameObject("Backgrounds/spr_mountain_" + (GameEnvironment.Random.Next(2) + 1), 1);
-            mountain.Position = new Vector2((float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.X - mountain.Width / 2, 
-                GameEnvironment.Screen.Y - mountain.Height);
-            backgrounds.Add(mountain);
+        for (int i = 10; i > 0; i--) {
+            newMountainLayer(backgrounds, 3, i * 3 + 7,((10-i)*2));        
         }
-        Clouds clouds = new Clouds(2);
-        backgrounds.Add(clouds);
         Add(backgrounds);
 
-        SpriteGameObject timerBackground = new SpriteGameObject("Sprites/spr_timer", 100);
+        SpriteGameObject timerBackground = new LockedSpriteGameObject("Sprites/spr_timer", 100);
         timerBackground.Position = new Vector2(10, 10);
         Add(timerBackground);
-        TimerGameObject timer = new TimerGameObject(101, "timer");
+        timer = new TimerGameObject(101, "timer");
         timer.Position = new Vector2(25, 30);
         Add(timer);
 
@@ -43,6 +36,20 @@ partial class Level : GameObjectList
         Add(new GameObjectList(2, "enemies"));
 
         LoadTiles("Content/Levels/" + levelIndex + ".txt");
+    }
+    public void newMountainLayer(GameObjectList backgrounds, int amount, int scalingFactor, int layer) {
+        int height = 0;
+        for (int i = 0; i < amount; i++) {
+            SpriteGameObject mountain = new HalfLockedSpriteGameObject("Backgrounds/spr_mountain_" + (GameEnvironment.Random.Next(2) + 1),layer+1, scalingFactor: scalingFactor);
+            mountain.Position = new Vector2((float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.X - mountain.Width / 2,
+                GameEnvironment.Screen.Y - mountain.Height - scalingFactor*5);
+            backgrounds.Add(mountain);
+            height = mountain.Height;
+        }
+        if (GameEnvironment.Random.Next(2) == 0) {
+            Clouds clouds = new Clouds(layer,"",height, GameEnvironment.Screen.Y - height - scalingFactor * 5,scalingFactor: scalingFactor+5);
+            backgrounds.Add(clouds);
+        }
     }
 
     public bool Completed

@@ -1,4 +1,4 @@
-﻿class Button : SpriteGameObject
+﻿class Button : LockedSpriteGameObject
 {
     protected bool pressed;
 

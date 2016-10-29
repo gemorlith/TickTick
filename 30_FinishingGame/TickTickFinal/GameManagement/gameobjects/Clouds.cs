@@ -2,16 +2,25 @@
 
 class Clouds : GameObjectList
 {
-    public Clouds(int layer = 0, string id = "")
+    public Clouds(int layer = 0, string id = "",int layerHeight = 0, int minHeight = 0, int scalingFactor = 7)
         : base(layer, id)
     {
         for (int i = 0; i < 3; i++)
         {
-            SpriteGameObject cloud = new SpriteGameObject("Backgrounds/spr_cloud_" + (GameEnvironment.Random.Next(5) + 1), 2);
-            cloud.Position = new Vector2((float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.X - cloud.Width / 2, 
-                (float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.Y - cloud.Height / 2);
-            cloud.Velocity = new Vector2((float)((GameEnvironment.Random.NextDouble() * 2) - 1) * 20, 0);
-            Add(cloud);
+            if (layerHeight == 0) {
+                SpriteGameObject cloud = new HalfLockedSpriteGameObject("Backgrounds/spr_cloud_" + (GameEnvironment.Random.Next(5) + 1), 2, scalingFactor: scalingFactor);
+                cloud.Position = new Vector2((float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.X - cloud.Width / 2,
+                    (float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.Y - cloud.Height / 2);
+                cloud.Velocity = new Vector2((float)((GameEnvironment.Random.NextDouble() * 2) - 1) * 20, 0);
+                Add(cloud);
+            }
+            else {
+                SpriteGameObject cloud = new HalfLockedSpriteGameObject("Backgrounds/spr_cloud_" + (GameEnvironment.Random.Next(5) + 1), 2, scalingFactor: scalingFactor);
+                cloud.Position = new Vector2((float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.X - cloud.Width / 2,
+                    (float)GameEnvironment.Random.NextDouble() * (layerHeight - cloud.Height*1.3f) + minHeight-10 );
+                cloud.Velocity = new Vector2((float)((GameEnvironment.Random.NextDouble() * 2) - 1) * 20, 0);
+                Add(cloud);
+            }
         }
     }
 

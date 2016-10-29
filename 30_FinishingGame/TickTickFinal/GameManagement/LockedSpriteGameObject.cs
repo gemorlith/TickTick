@@ -2,12 +2,12 @@
 using Microsoft.Xna.Framework.Graphics;
 
 class LockedSpriteGameObject:SpriteGameObject {
-    public LockedSpriteGameObject(string assetName, int layer, string id, int sheetIndex):base(assetName,layer,id,sheetIndex) {
+    public LockedSpriteGameObject(string assetName, int layer = 0, string id = "", int sheetIndex = 0):base(assetName,layer,id,sheetIndex) {
 
     }
     public override Vector2 CameraPosition {
         get {
-            return GlobalPosition - GameEnvironment.camera.CameraPosition;
+            return GlobalPosition;
         }
     }
 

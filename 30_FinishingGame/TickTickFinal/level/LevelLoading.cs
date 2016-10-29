@@ -15,19 +15,21 @@ partial class Level : GameObjectList
             textLines.Add(line);
             line = fileReader.ReadLine();
         }
-        TileField tiles = new TileField(textLines.Count - 1, width, 1, "tiles");
-        int height = textLines.Count - 1;
+        TileField tiles = new TileField(textLines.Count - 2, width, 1, "tiles");
+        int height = textLines.Count - 2;
         GameObjectList hintField = new GameObjectList(100);
         Add(hintField);
-        string hint = textLines[textLines.Count - 1];
-        SpriteGameObject hintFrame = new SpriteGameObject("Overlays/spr_frame_hint", 1);
+        string hint = textLines[textLines.Count - 2];
+        SpriteGameObject hintFrame = new LockedSpriteGameObject("Overlays/spr_frame_hint", 1);
         hintField.Position = new Vector2((GameEnvironment.Screen.X - hintFrame.Width) / 2, 10);
         hintField.Add(hintFrame);
         TextGameObject hintText = new TextGameObject("Fonts/HintFont", 2);
-        hintText.Text = textLines[textLines.Count - 1];
+        hintText.Text = textLines[textLines.Count - 2];
         hintText.Position = new Vector2(120, 25);
         hintText.Color = Color.Black;
         hintField.Add(hintText);
+        int timerTime = int.Parse(textLines[textLines.Count - 1]);
+        timer.SetTime = timerTime;
         VisibilityTimer hintTimer = new VisibilityTimer(hintField, 1, "hintTimer");
         Add(hintTimer);
 
@@ -38,7 +40,7 @@ partial class Level : GameObjectList
         this.height = height * tiles.CellHeight;
         for (int x = 0; x < width; ++x)
         {
-            for (int y = 0; y < textLines.Count - 1; ++y)
+            for (int y = 0; y < textLines.Count - 2; ++y)
             {
                 Tile t = LoadTile(textLines[y][x], x, y);
                 tiles.Add(t, x, y);

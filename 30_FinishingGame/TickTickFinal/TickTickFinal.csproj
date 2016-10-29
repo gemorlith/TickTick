@@ -88,6 +88,7 @@
       <Link>GameManagement\TextGameObject.cs</Link>
     </Compile>
     <Compile Include="GameManagement\Camera.cs" />
+    <Compile Include="GameManagement\gameobjects\Bomb.cs" />
     <Compile Include="GameManagement\gameobjects\Clouds.cs" />
     <Compile Include="GameManagement\gameobjects\enemies\PatrollingEnemy.cs" />
     <Compile Include="GameManagement\gameobjects\enemies\PlayerFollowingEnemy.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="GameManagement\gameobjects\TimerGameObject.cs" />
     <Compile Include="GameManagement\gameobjects\VisibilityTimer.cs" />
     <Compile Include="GameManagement\gameobjects\WaterDrop.cs" />
+    <Compile Include="GameManagement\HalfLockedSpriteGameObject.cs" />
     <Compile Include="GameManagement\LockedSpriteGameObject.cs" />
     <Compile Include="level\Level.cs" />
     <Compile Include="level\LevelGameLoop.cs" />
@@ -346,6 +348,9 @@
     </Content>
     <Content Include="..\..\assets\ticktick\tiles\spr_wall_ice.png">
       <Link>Content\Tiles\spr_wall_ice.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sprites\Bomb.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
