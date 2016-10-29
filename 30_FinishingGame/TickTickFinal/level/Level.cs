@@ -4,6 +4,8 @@ partial class Level : GameObjectList
 {
     protected bool locked, solved;
     protected Button quitButton;
+    int width;
+    int height;
 
     public Level(int levelIndex)
     {
@@ -63,6 +65,11 @@ partial class Level : GameObjectList
             }
             return true;
         }
+    }
+
+    public void setFocus() {
+        GameEnvironment.camera.FollowObject = Find("player") as Player;
+        GameEnvironment.camera.setlevelsize(width, height);
     }
 
     public bool GameOver

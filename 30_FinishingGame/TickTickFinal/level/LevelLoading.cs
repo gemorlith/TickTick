@@ -34,7 +34,8 @@ partial class Level : GameObjectList
         Add(tiles);
         tiles.CellWidth = 72;
         tiles.CellHeight = 55;
-        GameEnvironment.camera.setlevelsize(width * tiles.CellWidth, height * tiles.CellHeight);
+        this.width = width * tiles.CellWidth;
+        this.height = height * tiles.CellHeight;
         for (int x = 0; x < width; ++x)
         {
             for (int y = 0; y < textLines.Count - 1; ++y)

@@ -4,14 +4,18 @@ using Microsoft.Xna.Framework.Input;
 
 class GameOverState : GameObjectList
 {
-    protected IGameLoopObject playingState;
+    protected PlayingState playingState;
 
     public GameOverState()
     {
-        playingState = GameEnvironment.GameStateManager.GetGameState("playingState");
+        playingState = GameEnvironment.GameStateManager.GetGameState("playingState") as PlayingState;
         SpriteGameObject overlay = new SpriteGameObject("Overlays/spr_gameover");
         overlay.Position = new Vector2(GameEnvironment.Screen.X, GameEnvironment.Screen.Y) / 2 - overlay.Center;
         Add(overlay);
+    }
+
+    public void setFocus() {
+        playingState.setFocus();
     }
 
     public override void HandleInput(InputHelper inputHelper)

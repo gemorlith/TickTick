@@ -88,20 +88,21 @@
       <Link>GameManagement\TextGameObject.cs</Link>
     </Compile>
     <Compile Include="GameManagement\Camera.cs" />
-    <Compile Include="gameobjects\Clouds.cs" />
-    <Compile Include="gameobjects\enemies\PatrollingEnemy.cs" />
-    <Compile Include="gameobjects\enemies\PlayerFollowingEnemy.cs" />
-    <Compile Include="gameobjects\enemies\Rocket.cs" />
-    <Compile Include="gameobjects\enemies\Sparky.cs" />
-    <Compile Include="gameobjects\enemies\Turtle.cs" />
-    <Compile Include="gameobjects\enemies\UnpredictableEnemy.cs" />
-    <Compile Include="gameobjects\Player.cs" />
-    <Compile Include="gameobjects\PlayerPhysics.cs" />
-    <Compile Include="gameobjects\Tile.cs" />
-    <Compile Include="gameobjects\TileField.cs" />
-    <Compile Include="gameobjects\TimerGameObject.cs" />
-    <Compile Include="gameobjects\VisibilityTimer.cs" />
-    <Compile Include="gameobjects\WaterDrop.cs" />
+    <Compile Include="GameManagement\gameobjects\Clouds.cs" />
+    <Compile Include="GameManagement\gameobjects\enemies\PatrollingEnemy.cs" />
+    <Compile Include="GameManagement\gameobjects\enemies\PlayerFollowingEnemy.cs" />
+    <Compile Include="GameManagement\gameobjects\enemies\Rocket.cs" />
+    <Compile Include="GameManagement\gameobjects\enemies\Sparky.cs" />
+    <Compile Include="GameManagement\gameobjects\enemies\Turtle.cs" />
+    <Compile Include="GameManagement\gameobjects\enemies\UnpredictableEnemy.cs" />
+    <Compile Include="GameManagement\gameobjects\Player.cs" />
+    <Compile Include="GameManagement\gameobjects\PlayerPhysics.cs" />
+    <Compile Include="GameManagement\gameobjects\Tile.cs" />
+    <Compile Include="GameManagement\gameobjects\TileField.cs" />
+    <Compile Include="GameManagement\gameobjects\TimerGameObject.cs" />
+    <Compile Include="GameManagement\gameobjects\VisibilityTimer.cs" />
+    <Compile Include="GameManagement\gameobjects\WaterDrop.cs" />
+    <Compile Include="GameManagement\LockedSpriteGameObject.cs" />
     <Compile Include="level\Level.cs" />
     <Compile Include="level\LevelGameLoop.cs" />
     <Compile Include="level\LevelLoading.cs" />

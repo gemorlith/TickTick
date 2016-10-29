@@ -4,11 +4,11 @@ using Microsoft.Xna.Framework.Input;
 
 class LevelFinishedState : GameObjectList
 {
-    protected IGameLoopObject playingState;
+    protected PlayingState playingState;
 
     public LevelFinishedState()
     {
-        playingState = GameEnvironment.GameStateManager.GetGameState("playingState");
+        playingState = GameEnvironment.GameStateManager.GetGameState("playingState") as PlayingState;
         SpriteGameObject overlay = new SpriteGameObject("Overlays/spr_welldone");
         overlay.Position = new Vector2(GameEnvironment.Screen.X, GameEnvironment.Screen.Y) / 2 - overlay.Center;
         Add(overlay);
@@ -22,6 +22,10 @@ class LevelFinishedState : GameObjectList
         }
         GameEnvironment.GameStateManager.SwitchTo("playingState");
         (playingState as PlayingState).NextLevel();
+    }
+
+    public void setFocus() {
+        playingState.setFocus();
     }
 
     public override void Update(GameTime gameTime)
