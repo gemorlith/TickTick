@@ -134,6 +134,7 @@ public class GameEnvironment : Game
     {
         HandleInput();
         gameStateManager.Update(gameTime);
+        camera.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
