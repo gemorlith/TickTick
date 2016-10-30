@@ -104,9 +104,31 @@ public class SpriteGameObject : GameObject
         }
         return false;
     }
-    public bool CollidesWithTop(SpriteGameObject obj) {
-        Rectangle topBoundingBox = new Rectangle(BoundingBox.Left, BoundingBox.Top, Width, 1);
-        return topBoundingBox.Intersects(obj.BoundingBox);
+    public bool CollidesWithBottomOfOther(SpriteGameObject obj) {
+        if (!PerPixelCollisionDetection) {
+            Rectangle otherBotBoundingBox = new Rectangle(obj.BoundingBox.Left, obj.BoundingBox.Top, obj.Width, 1);
+            return otherBotBoundingBox.Intersects(obj.BoundingBox);
+        }
+        Rectangle b = Collision.Intersection(BoundingBox, obj.BoundingBox);
+        for (int x = 0; x < b.Width; x++) {
+            for (int y = 0; y < b.Height; y++) {
+                int thisx = b.X - (int)(GlobalPosition.X - origin.X) + x;
+                int thisy = b.Y - (int)(GlobalPosition.Y - origin.Y) + y;
+                int objx = b.X - (int)(obj.GlobalPosition.X - obj.origin.X) + x;
+                int objy = b.Y - (int)(obj.GlobalPosition.Y - obj.origin.Y) + y;
+                if(sprite.IsTranslucent(thisx, thisy) && obj.sprite.IsTranslucent(objx, objy) && objy > b.Height) {
+                    return true;
+                }
+                if (sprite.IsTranslucent(thisx, thisy) && obj.sprite.IsTranslucent(objx, objy)&& thisy<1) {
+                    return true;
+                }
+                else if (sprite.IsTranslucent(thisx, thisy) && objy <obj.Height/8 && obj.sprite.IsTranslucent(objx, objy)  && !obj.sprite.IsTranslucent(objx, objy+1) && !sprite.IsTranslucent(thisx, thisy - 1)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
     }
 }
 

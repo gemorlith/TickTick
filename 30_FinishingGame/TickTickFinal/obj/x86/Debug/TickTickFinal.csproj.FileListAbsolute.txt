@@ -86,3 +86,4 @@ D:\programmeren\TickTick\TickTick\30_FinishingGame\TickTickFinal\bin\Windows\x86
 D:\programmeren\TickTick\TickTick\30_FinishingGame\TickTickFinal\obj\x86\Debug\TickTickFinal.csprojResolveAssemblyReference.cache
 D:\programmeren\TickTick\TickTick\30_FinishingGame\TickTickFinal\obj\x86\Debug\TickTick5.exe
 D:\programmeren\TickTick\TickTick\30_FinishingGame\TickTickFinal\obj\x86\Debug\TickTick5.pdb
+D:\programmeren\TickTick\TickTick\30_FinishingGame\TickTickFinal\bin\Windows\x86\Debug\Content\Sprites\Bomb.png

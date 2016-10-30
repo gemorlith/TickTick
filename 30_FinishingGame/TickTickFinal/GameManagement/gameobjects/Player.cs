@@ -11,6 +11,7 @@ partial class Player : AnimatedGameObject
     protected bool exploded;
     protected bool finished;
     protected bool walkingOnIce, walkingOnHot;
+    protected Bomb myBomb;
 
     public Player(Vector2 start) : base(2, "player")
     {
@@ -19,8 +20,8 @@ partial class Player : AnimatedGameObject
         LoadAnimation("Sprites/Player/spr_jump@14", "jump", false, 0.05f); 
         LoadAnimation("Sprites/Player/spr_celebrate@14", "celebrate", false, 0.05f);
         LoadAnimation("Sprites/Player/spr_die@5", "die", false);
-        LoadAnimation("Sprites/Player/spr_explode@5x5", "explode", false, 0.04f); 
-
+        LoadAnimation("Sprites/Player/spr_explode@5x5", "explode", false, 0.04f);
+        myBomb = new Bomb();
         startPosition = start;
         Reset();
     }
@@ -69,6 +70,17 @@ partial class Player : AnimatedGameObject
         if ((inputHelper.KeyPressed(Keys.Space) || inputHelper.KeyPressed(Keys.Up)) && isOnTheGround)
         {
             Jump();
+        }
+        if (inputHelper.KeyPressed(Keys.M)) {
+            if (GameWorld.Find("bomb") != null) {
+                Bomb bomb = GameWorld.Find("bomb") as Bomb;
+                bomb.Reset(GlobalPosition - new Vector2(0, Height / 4 * 3));
+            }
+            else {
+                Bomb bomb = new Bomb();
+                GameWorld.Add(bomb);
+                bomb.Reset(GlobalPosition - new Vector2(0, Height / 4 * 3));
+            }
         }
     }
 
