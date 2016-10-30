@@ -17,6 +17,7 @@ class Sparky : AnimatedGameObject
 
     public override void Reset()
     {
+        base.Reset();
         idleTime = (float)GameEnvironment.Random.NextDouble() * 5;
         position.Y = initialY;
         yOffset = 120;
@@ -51,6 +52,11 @@ class Sparky : AnimatedGameObject
         {
             PlayAnimation("idle");
             idleTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Player player = GameWorld.Find("player") as Player;
+            if (CollidesWithBottomOfOther(player)) {
+                visible = false;
+                player.Jump(1000);
+            }
             if (idleTime <= 0.0f)
             {
                 velocity.Y = 300;
@@ -58,6 +64,18 @@ class Sparky : AnimatedGameObject
         }
 
         CheckPlayerCollision();
+        CheckBombCollision();
+    }
+
+    public void CheckBombCollision() {
+        Bomb bomb = GameWorld.Find("bomb") as Bomb;
+        if (bomb == null) {
+            return;
+        }
+        if (CollidesWith(bomb)) {
+            bomb.explode();
+            visible = false;
+        }
     }
 
     public void CheckPlayerCollision()

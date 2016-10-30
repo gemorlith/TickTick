@@ -15,6 +15,7 @@ class Turtle : AnimatedGameObject
 
     public override void Reset()
     {
+        base.Reset();
         sneezeTime = 0.0f;
         idleTime = 5.0f;
     }
@@ -43,6 +44,18 @@ class Turtle : AnimatedGameObject
             }
         }
         CheckPlayerCollision();
+        CheckBombCollision();
+    }
+
+    public void CheckBombCollision() {
+        Bomb bomb = GameWorld.Find("bomb") as Bomb;
+        if (bomb == null) {
+            return;
+        }
+        if (CollidesWith(bomb)) {
+            bomb.explode();
+            visible = false;
+        }
     }
 
     public void CheckPlayerCollision()

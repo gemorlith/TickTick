@@ -42,6 +42,18 @@ class PatrollingEnemy : AnimatedGameObject
             }
         }
         CheckPlayerCollision();
+        CheckBombCollision();
+    }
+
+    public void CheckBombCollision() {
+        Bomb bomb = GameWorld.Find("bomb") as Bomb;
+        if (bomb == null) {
+            return;
+        }
+        if (CollidesWith(bomb)) {
+            bomb.explode();
+            visible = false;
+        }
     }
 
     public void CheckPlayerCollision()
