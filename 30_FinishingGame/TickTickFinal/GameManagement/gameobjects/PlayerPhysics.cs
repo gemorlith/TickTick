@@ -3,17 +3,20 @@ using Microsoft.Xna.Framework;
 
 partial class Player :  AnimatedGameObject
 {
-    public void Jump(float speed = 1100)
+    public void Jump(float speed = 900)
     {
         velocity.Y = -speed;
         GameEnvironment.AssetManager.PlaySound("Sounds/snd_player_jump");
     }
     
-    private void DoPhysics()
+    private void DoPhysics(bool holding)
     {
-        if (!exploded)
+        if (!exploded && !holding)
         {
             velocity.Y += 55;
+        }
+        else if (!exploded && holding) {
+            velocity.Y += 35;
         }
         if (isAlive)
         {

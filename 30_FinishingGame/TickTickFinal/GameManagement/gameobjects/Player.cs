@@ -12,6 +12,7 @@ partial class Player : AnimatedGameObject
     protected bool finished;
     protected bool walkingOnIce, walkingOnHot;
     protected Bomb myBomb;
+    protected bool holdingUp;
 
     public Player(Vector2 start) : base(2, "player")
     {
@@ -36,40 +37,38 @@ partial class Player : AnimatedGameObject
         finished = false;
         walkingOnIce = false;
         walkingOnHot = false;
+        holdingUp = false;
         PlayAnimation("idle");
         previousYPosition = BoundingBox.Bottom;
     }
 
-    public override void HandleInput(InputHelper inputHelper)
-    {
+    public override void HandleInput(InputHelper inputHelper) {
         float walkingSpeed = 400;
-        if (walkingOnIce)
-        {
+        if (walkingOnIce) {
             walkingSpeed *= 1.5f;
         }
-        if (!isAlive)
-        {
+        if (!isAlive) {
             return;
         }
-        if (inputHelper.IsKeyDown(Keys.Left))
-        {
+        if (inputHelper.IsKeyDown(Keys.Left)) {
             velocity.X = -walkingSpeed;
         }
-        else if (inputHelper.IsKeyDown(Keys.Right))
-        {
+        else if (inputHelper.IsKeyDown(Keys.Right)) {
             velocity.X = walkingSpeed;
         }
-        else if (!walkingOnIce && isOnTheGround)
-        {
+        else if (!walkingOnIce && isOnTheGround) {
             velocity.X = 0.0f;
         }
-        if (velocity.X != 0.0f)
-        {
+        if (velocity.X != 0.0f) {
             Mirror = velocity.X < 0;
         }
-        if ((inputHelper.KeyPressed(Keys.Space) || inputHelper.KeyPressed(Keys.Up)) && isOnTheGround)
-        {
+        if ((inputHelper.KeyPressed(Keys.Space) || inputHelper.KeyPressed(Keys.Up)) && isOnTheGround) {
             Jump();
+        }
+        if (inputHelper.IsKeyDown(Keys.Space) || inputHelper.IsKeyDown(Keys.Up)) {
+            holdingUp = true;
+        } else {
+            holdingUp = false;
         }
         if (inputHelper.KeyPressed(Keys.M)) {
             if (GameWorld.Find("bomb") != null) {
@@ -126,7 +125,7 @@ partial class Player : AnimatedGameObject
             }
         }
 
-        DoPhysics();
+        DoPhysics(holdingUp);
     }
 
     public void Explode()

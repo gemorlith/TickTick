@@ -2,9 +2,15 @@
 
 class Clouds : GameObjectList
 {
+    int scalingFactor;
+    int layerHeight;
+    int minHeight;
     public Clouds(int layer = 0, string id = "",int layerHeight = 0, int minHeight = 0, int scalingFactor = 7)
         : base(layer, id)
     {
+        this.scalingFactor = scalingFactor;
+        this.layerHeight = layerHeight;
+        this.minHeight = minHeight;
         for (int i = 0; i < 3; i++)
         {
             if (layerHeight == 0) {
@@ -33,9 +39,9 @@ class Clouds : GameObjectList
             if ((c.Velocity.X < 0 && c.Position.X + c.Width < 0) || (c.Velocity.X > 0 && c.Position.X > GameEnvironment.Screen.X))
             {
                 Remove(c);
-                SpriteGameObject cloud = new SpriteGameObject("Backgrounds/spr_cloud_" + (GameEnvironment.Random.Next(5) + 1));
+                SpriteGameObject cloud = new HalfLockedSpriteGameObject("Backgrounds/spr_cloud_" + (GameEnvironment.Random.Next(5) + 1),scalingFactor: scalingFactor);
                 cloud.Velocity = new Vector2((float)((GameEnvironment.Random.NextDouble() * 2) - 1) * 20, 0);
-                float cloudHeight = (float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.Y - cloud.Height / 2;
+                float cloudHeight = ((float)GameEnvironment.Random.NextDouble() * (layerHeight - cloud.Height * 1.3f) + minHeight - 10 );
                 if (cloud.Velocity.X < 0)
                 {
                     cloud.Position = new Vector2(GameEnvironment.Screen.X, cloudHeight);

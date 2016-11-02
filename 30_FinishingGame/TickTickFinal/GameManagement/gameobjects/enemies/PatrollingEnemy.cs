@@ -4,6 +4,7 @@ using System;
 class PatrollingEnemy : AnimatedGameObject
 {
     protected float waitTime;
+    protected bool inJump;
 
     public PatrollingEnemy()
     {
@@ -11,6 +12,7 @@ class PatrollingEnemy : AnimatedGameObject
         velocity.X = 120;
         LoadAnimation("Sprites/Flame/spr_flame@9", "default", true);
         PlayAnimation("default");
+        inJump = false;
     }
 
     public override void Update(GameTime gameTime)
@@ -37,9 +39,15 @@ class PatrollingEnemy : AnimatedGameObject
             if (tiles.GetTileType(tileX, tileY - 1) == TileType.Normal ||
                 tiles.GetTileType(tileX, tileY) == TileType.Background)
             {
-                waitTime = 0.5f;
-                velocity.X = 0.0f;
+                velocity.Y = -120;
+                inJump = true;
+                //waitTime = 0.5f;
+                //velocity.X = 0.0f;
             }
+        }
+
+        if (inJump) {
+            velocity.Y += 20;
         }
         CheckPlayerCollision();
         CheckBombCollision();

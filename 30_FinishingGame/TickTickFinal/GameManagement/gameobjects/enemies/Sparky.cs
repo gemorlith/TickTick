@@ -47,6 +47,8 @@ class Sparky : AnimatedGameObject
             {
                 velocity.Y = -60;
             }
+            
+                CheckPlayerCollision();
         }
         else
         {
@@ -57,13 +59,14 @@ class Sparky : AnimatedGameObject
                 visible = false;
                 player.Jump(1000);
             }
+            else {
+                CheckPlayerCollision();
+            }
             if (idleTime <= 0.0f)
             {
                 velocity.Y = 300;
             }
         }
-
-        CheckPlayerCollision();
         CheckBombCollision();
     }
 
@@ -81,7 +84,7 @@ class Sparky : AnimatedGameObject
     public void CheckPlayerCollision()
     {
         Player player = GameWorld.Find("player") as Player;
-        if (CollidesWith(player) && idleTime <= 0)
+        if (CollidesWith(player) && idleTime <= 0 && visible)
         {
             player.Die(false);
         }
