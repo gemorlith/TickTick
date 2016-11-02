@@ -175,3 +175,4 @@ C:\Users\Diemel\Desktop\Visual Studio\Collabs met Tijmen\TickTick\30_FinishingGa
 C:\Users\Diemel\Desktop\Visual Studio\Collabs met Tijmen\TickTick\30_FinishingGame\TickTickFinal\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Diemel\Desktop\Visual Studio\Collabs met Tijmen\TickTick\30_FinishingGame\TickTickFinal\obj\x86\Debug\TickTick5.exe
 C:\Users\Diemel\Desktop\Visual Studio\Collabs met Tijmen\TickTick\30_FinishingGame\TickTickFinal\obj\x86\Debug\TickTick5.pdb
+C:\Users\Diemel\Desktop\Visual Studio\Collabs met Tijmen\TickTick\30_FinishingGame\TickTickFinal\bin\Windows\x86\Debug\Content\Levels\11.txt
