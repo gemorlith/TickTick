@@ -39,8 +39,6 @@ class PatrollingEnemy : AnimatedGameObject {
             int tileY = (int)Math.Floor(position.Y / tiles.CellHeight);
             if ((tiles.GetTileType(tileX, tileY - 1) == TileType.Normal ||
                 tiles.GetTileType(tileX, tileY) == TileType.Background) && !inJump) {
-                //waitTime = 0.5f;
-                //velocity.X = 0.0f;
                 float jumpLength = 0;
                 float jumpHeight = 0;
                 float vel = -120f;
@@ -66,9 +64,6 @@ class PatrollingEnemy : AnimatedGameObject {
             }
         }
 
-        if (inJump) {
-            velocity.Y += 2;
-        }
         CheckPlayerCollision();
         CheckBombCollision();
     }
