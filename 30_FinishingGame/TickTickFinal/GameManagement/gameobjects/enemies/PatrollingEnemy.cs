@@ -4,9 +4,11 @@ using System;
 class PatrollingEnemy : AnimatedGameObject
 {
     protected float waitTime;
-
+    protected bool injump;
+    protected float landingHeight;
     public PatrollingEnemy()
     {
+        injump = false;
         waitTime = 0.0f;
         velocity.X = 120;
         LoadAnimation("Sprites/Flame/spr_flame@9", "default", true);
@@ -16,6 +18,16 @@ class PatrollingEnemy : AnimatedGameObject
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        if (injump)
+        {
+            velocity.Y += 2;
+            if (position.Y > landingHeight)
+            {
+                position.Y = landingHeight;
+                velocity.Y = 0;
+                injump = false;
+            }
+        }
         if (waitTime > 0)
         {
             waitTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -34,11 +46,36 @@ class PatrollingEnemy : AnimatedGameObject
             }
             int tileX = (int)Math.Floor(posX / tiles.CellWidth);
             int tileY = (int)Math.Floor(position.Y / tiles.CellHeight);
-            if (tiles.GetTileType(tileX, tileY - 1) == TileType.Normal ||
-                tiles.GetTileType(tileX, tileY) == TileType.Background)
+            if ((tiles.GetTileType(tileX, tileY - 1) == TileType.Normal ||
+                tiles.GetTileType(tileX, tileY) == TileType.Background) && !injump)
             {
-                waitTime = 0.5f;
-                velocity.X = 0.0f;
+                float jumpLength = 0;
+                float jumpHeight = 0;
+                float vel = -120f;
+                while (true)
+                {
+                    jumpLength += velocity.X /60;
+                    jumpHeight += vel /60;
+                    vel += 2;
+                    if (jumpHeight >= 0) {
+                        TileType t = tiles.GetTileType(tileX + (int)Math.Floor(jumpLength / tiles.CellWidth), tileY);
+                        if (tiles.GetTileType(tileX + (int)Math.Floor(jumpLength / tiles.CellWidth), tileY) == TileType.Normal)
+                        {
+                            velocity.Y = -120.0f;
+                            injump = true;
+                            landingHeight = position.Y;
+                            break;
+                        }
+                        else
+                        {
+                            waitTime = 0.5f;
+                            velocity.X = 0.0f;
+                            break;
+                        }
+                    }
+                }
+                
+
             }
         }
         CheckPlayerCollision();

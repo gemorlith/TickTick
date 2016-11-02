@@ -52,11 +52,6 @@ class Sparky : AnimatedGameObject
         {
             PlayAnimation("idle");
             idleTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Player player = GameWorld.Find("player") as Player;
-            if (CollidesWithBottomOfOther(player)) {
-                visible = false;
-                player.Jump(1000);
-            }
             if (idleTime <= 0.0f)
             {
                 velocity.Y = 300;
