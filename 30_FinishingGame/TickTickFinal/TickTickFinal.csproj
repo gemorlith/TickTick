@@ -96,6 +96,7 @@
     <Compile Include="GameManagement\gameobjects\enemies\Sparky.cs" />
     <Compile Include="GameManagement\gameobjects\enemies\Turtle.cs" />
     <Compile Include="GameManagement\gameobjects\enemies\UnpredictableEnemy.cs" />
+    <Compile Include="GameManagement\gameobjects\Explosion.cs" />
     <Compile Include="GameManagement\gameobjects\Player.cs" />
     <Compile Include="GameManagement\gameobjects\PlayerPhysics.cs" />
     <Compile Include="GameManagement\gameobjects\Tile.cs" />

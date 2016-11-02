@@ -31,7 +31,7 @@ class Bomb : SpriteGameObject {
         if (!remove) {
             timer += gameTime.ElapsedGameTime;
             if (timer.Seconds > lifeSpan) {
-                remove = true;
+                explode();
                 visible = false;
                 timer = new TimeSpan();
             }
@@ -46,6 +46,8 @@ class Bomb : SpriteGameObject {
     
     public void explode() {
         remove = true;
+        Explosion explosion = new Explosion(GlobalPosition + Center);
+        GameWorld.AddNew(explosion);
     }
 
 

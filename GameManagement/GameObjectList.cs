@@ -5,9 +5,13 @@ using Microsoft.Xna.Framework.Graphics;
 public class GameObjectList : GameObject
 {
     protected List<GameObject> children;
+    protected List<GameObject> removeList;
+    protected List<GameObject> addList;
 
     public GameObjectList(int layer = 0, string id = "") : base(layer, id)
     {
+        removeList = new List<GameObject>();
+        addList = new List<GameObject>();
         children = new List<GameObject>();
     }
 
@@ -16,13 +20,10 @@ public class GameObjectList : GameObject
         get { return children; }
     }
 
-    public void Add(GameObject obj)
-    {
+    public void Add(GameObject obj) {
         obj.Parent = this;
-        for (int i = 0; i < children.Count; i++)
-        {
-            if (children[i].Layer > obj.Layer)
-            {
+        for (int i = 0; i < children.Count; i++) {
+            if (children[i].Layer > obj.Layer) {
                 children.Insert(i, obj);
                 return;
             }
@@ -30,11 +31,30 @@ public class GameObjectList : GameObject
         children.Add(obj);
     }
 
+    public void AddNew(GameObject obj)
+    {
+        addList.Add(obj);
+    }
+
     public void Remove(GameObject obj)
     {
-        children.Remove(obj);
-        obj.Parent = null;
+        removeList.Add(obj);
     }
+    
+    public void RemoveFlaggedObjects() {
+        foreach (GameObject obj in removeList) {
+            children.Remove(obj);
+            obj.Parent = null;
+        }
+        removeList.Clear();
+}
+    public void AddFlaggedObjects() {
+        foreach(GameObject obj in addList) {
+            Add(obj);
+        }
+        addList.Clear();
+    }
+
 
     public GameObject Find(string id)
     {
@@ -71,6 +91,8 @@ public class GameObjectList : GameObject
         {
             obj.Update(gameTime);
         }
+        RemoveFlaggedObjects();
+        AddFlaggedObjects();
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
