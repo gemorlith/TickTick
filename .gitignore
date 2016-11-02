@@ -13,11 +13,11 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
-*.exe
-*.dll
+
 # Windows shortcuts
 *.lnk
 
+$GIT_DIR/30_FinishingGame/TickTickFinal
 # =========================
 # Operating System Files
 # =========================
