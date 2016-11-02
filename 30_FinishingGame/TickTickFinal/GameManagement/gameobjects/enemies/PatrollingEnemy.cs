@@ -4,10 +4,8 @@ using System;
 class PatrollingEnemy : AnimatedGameObject {
     protected float waitTime;
     protected bool inJump;
-    protected bool injump;
     protected float landingHeight;
     public PatrollingEnemy() {
-        injump = false;
         waitTime = 0.0f;
         velocity.X = 120;
         LoadAnimation("Sprites/Flame/spr_flame@9", "default", true);
@@ -17,12 +15,12 @@ class PatrollingEnemy : AnimatedGameObject {
 
     public override void Update(GameTime gameTime) {
         base.Update(gameTime);
-        if (injump) {
+        if (inJump) {
             velocity.Y += 2;
             if (position.Y > landingHeight) {
                 position.Y = landingHeight;
                 velocity.Y = 0;
-                injump = false;
+                inJump = false;
             }
         }
         if (waitTime > 0) {
@@ -40,9 +38,7 @@ class PatrollingEnemy : AnimatedGameObject {
             int tileX = (int)Math.Floor(posX / tiles.CellWidth);
             int tileY = (int)Math.Floor(position.Y / tiles.CellHeight);
             if ((tiles.GetTileType(tileX, tileY - 1) == TileType.Normal ||
-                tiles.GetTileType(tileX, tileY) == TileType.Background) && !injump) {
-                velocity.Y = -120;
-                inJump = true;
+                tiles.GetTileType(tileX, tileY) == TileType.Background) && !inJump) {
                 //waitTime = 0.5f;
                 //velocity.X = 0.0f;
                 float jumpLength = 0;
@@ -56,7 +52,7 @@ class PatrollingEnemy : AnimatedGameObject {
                         TileType t = tiles.GetTileType(tileX + (int)Math.Floor(jumpLength / tiles.CellWidth), tileY);
                         if (tiles.GetTileType(tileX + (int)Math.Floor(jumpLength / tiles.CellWidth), tileY) == TileType.Normal) {
                             velocity.Y = -120.0f;
-                            injump = true;
+                            inJump = true;
                             landingHeight = position.Y;
                             break;
                         }
@@ -71,7 +67,7 @@ class PatrollingEnemy : AnimatedGameObject {
         }
 
         if (inJump) {
-            velocity.Y += 20;
+            velocity.Y += 2;
         }
         CheckPlayerCollision();
         CheckBombCollision();
