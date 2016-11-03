@@ -48,7 +48,8 @@ class PatrollingEnemy : AnimatedGameObject {
                     jumpHeight += vel / 60;
                     vel += 2;
                     if (jumpHeight >= 0) {
-                        if (position.X + jumpLength < 0 || position.X + jumpLength > GameEnvironment.camera.levelwidth)
+                        int a = tileX + (int)Math.Floor(jumpLength / tiles.CellWidth);
+                        if (position.X + jumpLength <= 0 || position.X + jumpLength >= GameEnvironment.camera.levelwidth - this.Width)
                         {
                             waitTime = 0.5f;
                             velocity.X = 0.0f;

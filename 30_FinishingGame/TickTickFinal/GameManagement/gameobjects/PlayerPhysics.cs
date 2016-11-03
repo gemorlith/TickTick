@@ -13,10 +13,10 @@ partial class Player :  AnimatedGameObject
     {
         if (!exploded && !holding)
         {
-            velocity.Y += 55;
+            velocity.Y += 80;
         }
         else if (!exploded && holding) {
-            velocity.Y += 35;
+            velocity.Y += 30;
         }
         if (isAlive)
         {
