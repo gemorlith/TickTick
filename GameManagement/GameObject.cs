@@ -9,6 +9,7 @@ public abstract class GameObject : IGameLoopObject
     protected string id;
     protected bool visible;
     protected Vector2 startPos;
+    protected bool posReset;
     public GameObject(int layer = 0, string id = "")
     {
         this.layer = layer;
@@ -18,6 +19,8 @@ public abstract class GameObject : IGameLoopObject
         visible = true;
         startPos = Vector2.Zero;
     }
+
+    
 
     public virtual void HandleInput(InputHelper inputHelper)
     {
@@ -35,12 +38,30 @@ public abstract class GameObject : IGameLoopObject
     public virtual void Reset()
     {
         visible = true;
+        if (posReset)
+        {
+            position = startPos;
+        }
     }
+
 
     public virtual Vector2 Position
     {
         get { return position; }
         set { position = value; }
+    }
+
+    public Vector2 StartPosition
+    {
+        set
+        {
+            Position = value;
+            startPos = value;
+        }
+        get
+        {
+            return startPos;
+        }
     }
 
     public virtual Vector2 Velocity

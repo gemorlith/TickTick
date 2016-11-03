@@ -10,6 +10,7 @@ class Turtle : AnimatedGameObject
         LoadAnimation("Sprites/Turtle/spr_sneeze@9", "sneeze", false);
         LoadAnimation("Sprites/Turtle/spr_idle", "idle", true);
         PlayAnimation("idle");
+        posReset = true;
         Reset();
     }
 

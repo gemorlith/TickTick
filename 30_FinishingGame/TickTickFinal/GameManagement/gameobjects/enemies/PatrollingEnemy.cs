@@ -11,6 +11,7 @@ class PatrollingEnemy : AnimatedGameObject {
         LoadAnimation("Sprites/Flame/spr_flame@9", "default", true);
         PlayAnimation("default");
         inJump = false;
+        posReset = true;
     }
 
     public override void Update(GameTime gameTime) {

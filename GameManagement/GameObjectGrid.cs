@@ -23,7 +23,7 @@ public class GameObjectGrid : GameObject
     {
         grid[x, y] = obj;
         obj.Parent = this;
-        obj.Position = new Vector2(x * cellWidth, y * cellHeight);
+        obj.StartPosition = new Vector2(x * cellWidth, y * cellHeight);
     }
 
     public GameObject Get(int x, int y)
