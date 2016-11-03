@@ -118,7 +118,7 @@ partial class Level : GameObjectList
             case 'C': 
             default:  enemy = new PatrollingEnemy(); break;
         }
-        enemy.Position = new Vector2(((float)x + 0.5f) * tiles.CellWidth, (y + 1) * tiles.CellHeight);
+        enemy.StartPosition = new Vector2(((float)x + 0.5f) * tiles.CellWidth, (y + 1) * tiles.CellHeight);
         enemies.Add(enemy);
         return new Tile();
     }
@@ -128,7 +128,7 @@ partial class Level : GameObjectList
         GameObjectList enemies = Find("enemies") as GameObjectList;
         TileField tiles = Find("tiles") as TileField;
         Turtle enemy = new Turtle();
-        enemy.Position = new Vector2(((float)x + 0.5f) * tiles.CellWidth, (y + 1) * tiles.CellHeight + 25.0f);
+        enemy.StartPosition = new Vector2(((float)x + 0.5f) * tiles.CellWidth, (y + 1) * tiles.CellHeight + 25.0f);
         enemies.Add(enemy);
         return new Tile();
     }
@@ -139,7 +139,7 @@ partial class Level : GameObjectList
         GameObjectList enemies = Find("enemies") as GameObjectList;
         TileField tiles = Find("tiles") as TileField;
         Sparky enemy = new Sparky((y + 1) * tiles.CellHeight - 100f);
-        enemy.Position = new Vector2(((float)x + 0.5f) * tiles.CellWidth, (y + 1) * tiles.CellHeight - 100f);
+        enemy.StartPosition = new Vector2(((float)x + 0.5f) * tiles.CellWidth, (y + 1) * tiles.CellHeight - 100f);
         enemies.Add(enemy);
         return new Tile();
     }

@@ -19,5 +19,19 @@ class Explosion:AnimatedGameObject {
         if (timer.TotalSeconds >= 1f) {
             GameWorld.Remove(this);
         }
+        CheckPlayerCollision();
+    }
+    public override void Reset()
+    {
+        GameWorld.Remove(this);
+    }
+
+    public void CheckPlayerCollision()
+    {
+        Player player = GameWorld.Find("player") as Player;
+        if (CollidesWith(player))
+        {
+            player.Die(false);
+        }
     }
 }

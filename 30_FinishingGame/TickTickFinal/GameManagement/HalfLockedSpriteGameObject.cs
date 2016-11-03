@@ -12,5 +12,6 @@ class HalfLockedSpriteGameObject:SpriteGameObject {
         }
     }
 
+
 }
 

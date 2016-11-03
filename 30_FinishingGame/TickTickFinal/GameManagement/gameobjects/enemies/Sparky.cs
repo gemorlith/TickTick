@@ -12,6 +12,7 @@ class Sparky : AnimatedGameObject
         LoadAnimation("Sprites/Sparky/spr_idle", "idle", true);
         PlayAnimation("idle");
         this.initialY = initialY;
+        posReset = true;
         Reset();
     }
 
