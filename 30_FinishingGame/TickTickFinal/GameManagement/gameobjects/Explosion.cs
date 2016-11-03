@@ -8,8 +8,10 @@ class Explosion:AnimatedGameObject {
     public Explosion(Vector2 Position) : base(2, "explosion") {
         LoadAnimation("Sprites/Player/spr_explode@5x5", "explode", false, 0.04f);
         PlayAnimation("explode");
-        position = Position + Center;
+        position = Position - Center;
+        //position = Position;
         timer = new TimeSpan();
+        this.Origin = Vector2.Zero;
     }
     public override void Update(GameTime gameTime) {
         base.Update(gameTime);
