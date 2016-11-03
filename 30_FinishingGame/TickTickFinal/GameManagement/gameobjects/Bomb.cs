@@ -67,7 +67,8 @@ class Bomb : SpriteGameObject {
                             Vector2 vectorFromTile = (collisionTile.Center + collisionTile.GlobalPosition) - (this.Center + this.GlobalPosition);
                             if (Math.Abs(vectorFromTile.X) > Math.Abs(vectorFromTile.Y) * (((float)collisionTile.Width) / (float)collisionTile.Height))
                             {
-                                velocity.X *= -.9f;
+                                if(Math.Sign(vectorFromTile.X) == Math.Sign(velocity.X))
+                                    velocity.X *= -.9f;
                                 if (velocity.X > 0)
                                 {
                                     position.X = collisionTile.Position.X + collisionTile.Width;
@@ -79,7 +80,8 @@ class Bomb : SpriteGameObject {
                             }
                             else
                             {
-                                velocity.Y *= -.9f;
+                                if (Math.Sign(vectorFromTile.Y) == Math.Sign(velocity.Y))
+                                    velocity.Y *= -.9f;
                                 if (velocity.Y > 0)
                                 {
                                     position.Y = collisionTile.Position.Y + collisionTile.Width;
