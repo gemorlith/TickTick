@@ -8,7 +8,7 @@ public abstract class GameObject : IGameLoopObject
     protected int layer;
     protected string id;
     protected bool visible;
-
+    protected Vector2 startPos;
     public GameObject(int layer = 0, string id = "")
     {
         this.layer = layer;
@@ -16,6 +16,7 @@ public abstract class GameObject : IGameLoopObject
         position = Vector2.Zero;
         velocity = Vector2.Zero; 
         visible = true;
+        startPos = Vector2.Zero;
     }
 
     public virtual void HandleInput(InputHelper inputHelper)

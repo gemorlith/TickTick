@@ -18,6 +18,10 @@ class Sparky : AnimatedGameObject
     public override void Reset()
     {
         base.Reset();
+        softReset();
+    }
+    public void softReset()
+    {
         idleTime = (float)GameEnvironment.Random.NextDouble() * 5;
         position.Y = initialY;
         yOffset = 120;
@@ -40,27 +44,31 @@ class Sparky : AnimatedGameObject
                 }
                 else if (yOffset >= 120.0f)
                 {
-                    Reset();
+                    softReset();
                 }
             }
             else if (Current.AnimationEnded)
             {
                 velocity.Y = -60;
             }
-            
-                CheckPlayerCollision();
+
+            CheckPlayerCollision();
         }
         else
         {
             PlayAnimation("idle");
             idleTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             Player player = GameWorld.Find("player") as Player;
-            if (CollidesWithBottomOfOther(player)) {
-                visible = false;
-                player.Jump(1000);
-            }
-            else {
-                CheckPlayerCollision();
+            if (visible) {
+                if (CollidesWithBottomOfOther(player))
+                {
+                    visible = false;
+                    player.Jump(1000);
+                }
+                else
+                {
+                    CheckPlayerCollision();
+                }
             }
             if (idleTime <= 0.0f)
             {

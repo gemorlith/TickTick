@@ -73,6 +73,7 @@ partial class Player : AnimatedGameObject
         if (inputHelper.KeyPressed(Keys.M)) {
             if (GameWorld.Find("bomb") != null) {
                 Bomb bomb = GameWorld.Find("bomb") as Bomb;
+                bomb.explode();
                 bomb.Reset(GlobalPosition - new Vector2(0, Height / 4 * 3),Mirror);
             }
             else {
