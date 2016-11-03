@@ -266,3 +266,4 @@ D:\Documents\programmeren uni visual\TickTick\30_FinishingGame\TickTickFinal\bin
 D:\Documents\programmeren uni visual\TickTick\30_FinishingGame\TickTickFinal\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 D:\Documents\programmeren uni visual\TickTick\30_FinishingGame\TickTickFinal\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 D:\Documents\programmeren uni visual\TickTick\30_FinishingGame\TickTickFinal\obj\x86\Debug\TickTickFinal.csprojResolveAssemblyReference.cache
+C:\Users\Diemel\Desktop\Visual Studio\Collabs met Tijmen\TickTick\30_FinishingGame\TickTickFinal\obj\x86\Debug\TickTickFinal.csprojResolveAssemblyReference.cache
