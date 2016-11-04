@@ -63,7 +63,7 @@ partial class Player : AnimatedGameObject
             Mirror = velocity.X < 0;
         }
         if ((inputHelper.KeyPressed(Keys.Space) || inputHelper.KeyPressed(Keys.Up)) && isOnTheGround) {
-            Jump();
+           Jump();
         }
         if (inputHelper.IsKeyDown(Keys.Space) || inputHelper.IsKeyDown(Keys.Up)) {
             holdingUp = true;

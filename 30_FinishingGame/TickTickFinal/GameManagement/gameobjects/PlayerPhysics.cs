@@ -61,7 +61,7 @@ partial class Player :  AnimatedGameObject
                     }
                     continue;
                 }
-                if (previousYPosition <= tileBounds.Top && tileType != TileType.Background)
+                if (previousYPosition <= (tileBounds.Top+1) && tileType != TileType.Background)
                 {
                     isOnTheGround = true;
                     velocity.Y = 0;
