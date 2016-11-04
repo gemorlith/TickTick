@@ -44,10 +44,10 @@ partial class Level : GameObjectList {
             mountain.Position = new Vector2((float)GameEnvironment.Random.NextDouble() * GameEnvironment.Screen.X - mountain.Width / 2,
                 GameEnvironment.Screen.Y - mountain.Height - scalingFactor*5);
             backgrounds.Add(mountain);
-            height = mountain.Height;
+            height =  mountain.Height;
         }
         if (GameEnvironment.Random.Next(2) == 0) {
-            Clouds clouds = new Clouds(layer,"",height, GameEnvironment.Screen.Y - height - scalingFactor * 5,scalingFactor: scalingFactor+5);
+            Clouds clouds = new Clouds(layer,"",(int)(height/1.5), GameEnvironment.Screen.Y - height - scalingFactor * 5,scalingFactor: scalingFactor+5);
             backgrounds.Add(clouds);
         }
     }
