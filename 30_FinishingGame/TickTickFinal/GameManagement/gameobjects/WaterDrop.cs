@@ -9,6 +9,11 @@ class WaterDrop : SpriteGameObject
     {
     }
 
+    public override void Reset() {
+        base.Reset();
+        position = startPos;
+    }
+
     public override void Update(GameTime gameTime)
     {
         double t = gameTime.TotalGameTime.TotalSeconds * 3.0f + Position.X;

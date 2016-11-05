@@ -174,8 +174,8 @@ partial class Level : GameObjectList
         TileField tiles = Find("tiles") as TileField;
         WaterDrop w = new WaterDrop();
         w.Origin = w.Center;
-        w.Position = new Vector2(x * tiles.CellWidth, y * tiles.CellHeight - 10);
-        w.Position += new Vector2(tiles.CellWidth, tiles.CellHeight) / 2;
+        w.StartPosition = new Vector2(x * tiles.CellWidth, y * tiles.CellHeight - 10);
+        w.StartPosition += new Vector2(tiles.CellWidth, tiles.CellHeight) / 2;
         waterdrops.Add(w);
         return new Tile();
     }
