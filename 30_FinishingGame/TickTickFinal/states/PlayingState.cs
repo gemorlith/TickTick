@@ -85,6 +85,7 @@ class PlayingState : IGameLoopObject
         {
             CurrentLevelIndex++;
             levels[currentLevelIndex].Locked = false;
+            setFocus();
         }
         WriteLevelsStatus(content.RootDirectory + "/Levels/levels_status.txt");
     }

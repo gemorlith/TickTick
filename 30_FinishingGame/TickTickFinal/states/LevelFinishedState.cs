@@ -30,7 +30,7 @@ class LevelFinishedState : GameObjectList
         }
         GameEnvironment.GameStateManager.SwitchTo("playingState");
         (playingState as PlayingState).NextLevel();
-        setFocus();
+
     }
 
     public void setFocus() {
