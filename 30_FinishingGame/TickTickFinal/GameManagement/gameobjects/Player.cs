@@ -12,7 +12,7 @@ partial class Player : AnimatedGameObject
     protected bool finished;
     protected bool walkingOnIce, walkingOnHot;
     protected Bomb myBomb;
-    protected bool holdingUp;
+    protected bool holdingUp, movingThroughPlatform;
 
     public Player(Vector2 start) : base(2, "player")
     {
@@ -37,6 +37,7 @@ partial class Player : AnimatedGameObject
         finished = false;
         walkingOnIce = false;
         walkingOnHot = false;
+        movingThroughPlatform = false;
         holdingUp = false;
         PlayAnimation("idle");
         previousYPosition = BoundingBox.Bottom;
@@ -71,6 +72,12 @@ partial class Player : AnimatedGameObject
             holdingUp = true;
         } else {
             holdingUp = false;
+        }
+        if (inputHelper.IsKeyDown(Keys.Down)) {
+            movingThroughPlatform = true;
+        }
+        else {
+            movingThroughPlatform = false;
         }
         if (inputHelper.KeyPressed(Keys.M)) {
             if (GameWorld.Find("bomb") != null) {
@@ -130,7 +137,7 @@ partial class Player : AnimatedGameObject
             }
         }
 
-        DoPhysics(holdingUp);
+        DoPhysics(holdingUp, movingThroughPlatform);
     }
 
     public void Explode()
