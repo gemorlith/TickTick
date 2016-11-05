@@ -9,7 +9,7 @@ partial class Player :  AnimatedGameObject
         GameEnvironment.AssetManager.PlaySound("Sounds/snd_player_jump");
     }
     
-    private void DoPhysics(bool holding)
+    private void DoPhysics(bool holding, bool movingThroughPlatform)
     {
         if (!exploded && !holding)
         {
@@ -20,11 +20,11 @@ partial class Player :  AnimatedGameObject
         }
         if (isAlive)
         {
-            HandleCollisions();
+            HandleCollisions(movingThroughPlatform);
         }
     }
 
-    private void HandleCollisions()
+    private void HandleCollisions(bool movingThroughPlatform)
     {
         isOnTheGround = false;
         walkingOnIce = false;
@@ -63,6 +63,9 @@ partial class Player :  AnimatedGameObject
                 }
                 if (previousYPosition <= tileBounds.Top && tileType != TileType.Background)
                 {
+                    if(tileType==TileType.Platform && movingThroughPlatform) {
+                        continue;
+                    }
                     isOnTheGround = true;
                     velocity.Y = 0;
                     if (currentTile != null)
@@ -70,6 +73,7 @@ partial class Player :  AnimatedGameObject
                         walkingOnIce = walkingOnIce || currentTile.Ice;
                         walkingOnHot = walkingOnHot || currentTile.Hot;
                     }
+
                 }
                 if (tileType == TileType.Normal || isOnTheGround)
                 {
